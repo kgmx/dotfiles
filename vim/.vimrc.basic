@@ -1,0 +1,70 @@
+" ============================================================
+" Basic Settings
+" ============================================================
+
+" My basic settings
+set fencs=utf-8,gb2312,gbk    " Sets the default encoding
+filetype plugin indent on     " Automatically detect file types.
+set autochdir                 " always switch to the current file directory.
+set nospell                   " spell checking off
+set shortmess+=filmnrxoOtT    " abbrev. of messages (avoids 'hit enter')
+set virtualedit=onemore       " allow for cursor beyond last character
+set history=1000              " Store a ton of history (default is 20)
+" set clipboard=unnamed         " use system clipboard "
+
+" Setting up the directories
+set noswapfile
+set backup                            " backups are nice
+set backupdir=~/.dotfiles/vim/backup  " backup directory
+set undofile                          " Persistent undo
+set undolevels=1000                   " maximum number of changes that can be undone
+set undoreload=1000                   " maximum number lines to save for undo on a buffer reload
+set undodir=~/.dotfiles/vim/undo      " undo directory
+
+" Enable basic mouse behavior such as resizing buffers.
+" set mouse=a
+" if exists('$TMUX')  " Support resizing in tmux
+"     set ttymouse=xterm2
+" endif
+
+" When vimrc is edited, reload it
+autocmd! bufwritepost ~/.dotfiles/vim/.vimrc source ~/.vimrc
+
+" Since I use linux, I want this
+let g:clipbrdDefaultReg='+'
+
+
+" ============================================================
+" Languages
+" ============================================================
+
+" Indent Fixes
+    autocmd FileType php,css,scss,sass,less,html,eruby,ruby,jade,haml,jinja,javascript,json,coffee,puppet,yaml set shiftwidth=2
+    autocmd FileType php,css,scss,sass,less,html,eruby,ruby,jade,haml,jinja,javascript,json,coffee,puppet,yaml set tabstop=2
+    autocmd FileType php,css,scss,sass,less,html,eruby,ruby,jade,haml,jinja,javascript,json,coffee,puppet,yaml set softtabstop=2
+
+" FE
+    autocmd BufRead,BufNewFile *.twig set filetype=jinja
+    autocmd BufRead,BufNewFile *.html set filetype=html
+    autocmd BufRead,BufNewFile *.haml set filetype=haml
+    autocmd BufRead,BufNewFile *.svg set filetype=svg
+    autocmd BufRead,BufNewFile *.less set filetype=less
+    autocmd BufRead,BufNewFile *.sass,*.scss set filetype=sass
+    autocmd BufRead,BufNewFile *.json set filetype=json
+
+" css3 syntax bug fix
+    augroup VimCSS3Syntax
+      autocmd!
+
+      autocmd FileType css setlocal iskeyword+=-
+    augroup END
+
+" Python
+    " Highlight 80 column
+    autocmd FileType python set cc=80
+
+" Erb
+    autocmd BufRead,BufNewFile *.erb set filetype=eruby
+
+" markdown
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown

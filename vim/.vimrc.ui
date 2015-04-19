@@ -1,0 +1,76 @@
+"""""""""""""""""""""
+" Formatting
+"""""""""""""""""""""
+
+syntax on             " syntax highlighting
+set number            " Show numbers
+set nowrap            " no wrap long lines
+set lbr               " set linebreak
+set tw=0              " sets the text width
+set ai                " Auto indent
+set si                " Smart indet
+set expandtab         " tabs are spaces, not tabs
+set shiftwidth=4      " use indents of 4 spaces
+set tabstop=4         " an indentation every two columns
+set softtabstop=4     " let backspace delete indent
+
+" Remove trailing whitespaces and ^M chars
+" autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+set tabpagemax=15     " only show 15 tabs
+set showmode          " display the current mode
+set showcmd           " show partial commands in status line and selected characters/lines in visual mode
+set ruler             " show the ruler
+set cursorline        " highlight current line
+
+set laststatus=2                " Displaying status line always
+set backspace=indent,eol,start  " Backspace for dummys
+set linespace=0                 " No extra spaces between rows
+set showmatch                   " Show matching brackets/parenthesis
+set incsearch                   " Find as you type search
+set hlsearch                    " Highlight search terms
+set winminheight=0              " Windows can be 0 line high
+set ignorecase                  " Case insensitive search
+set smartcase                   " Case sensitive when uc present
+
+set wildmenu                    " Show list instead of just completing
+set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap to
+set scrolljump=5                " Lines to scroll when cursor leaves screen
+set scrolloff=3                 " Minimum lines to keep above and below cursor
+set nofoldenable                " Disable fold code
+set gdefault                    " The /g flag on :s substitutions by default
+set hidden                      " Change buffer - without saving
+set magic                       " Set magic on, for regular expressions
+set autoread                    " Auto reload file on change
+set list                        " displays whitespace
+set listchars=tab:>\ ,trail:\ ,extends:#,nbsp:\  " Highlight problematic whitespace
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+"""""""""""""""""""""
+" Theme
+"""""""""""""""""""""
+
+set background=dark
+if has('gui_running')
+    color Tomorrow-Night
+    set guifont=Monaco:h12         " set gui font
+    set guioptions-=T              " remove the toolbar
+    set lines=40                   " 40 lines of text instead of 24,
+else
+    color solarized               " load a colorscheme
+    set term=builtin_xterm        " Make terminal stuff works
+    let g:solarized_termtrans=1
+    let g:solarized_termcolors=256
+    set t_Co=256
+endif
+

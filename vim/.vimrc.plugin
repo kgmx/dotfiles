@@ -1,0 +1,98 @@
+""""""""""""""""""""
+" Misc
+""""""""""""""""""""
+let g:NERDShutUp=1
+let b:match_ignorecase = 1
+
+""""""""""""""""""""
+" Ack.vim
+""""""""""""""""""""
+nmap <leader>a :Ack
+if executable('ag')
+    let g:ackprg = 'ag --nogroup --column'
+
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+""""""""""""""""""""
+" NerdTree
+""""""""""""""""""""
+map <C-n> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+map <leader>e :NERDTreeFind<CR>
+nmap <leader>nt :NERDTreeFind<CR>
+
+"let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store', '__pycache__', '\.egg-info$']
+let NERDTreeShowHidden=1
+
+""""""""""""""""""""
+" Tabular
+""""""""""""""""""""
+if exists(":Tabularize")
+  nmap <leader>a= :Tabularize /=<CR>
+  vmap <leader>a= :Tabularize /=<CR>
+  nmap <leader>a: :Tabularize /:<CR>
+  vmap <leader>a: :Tabularize /:<CR>
+  nmap <leader>a:: :Tabularize /:\zs<CR>
+  vmap <leader>a:: :Tabularize /:\zs<CR>
+  nmap <leader>a, :Tabularize /,<CR>
+  vmap <leader>a, :Tabularize /,<CR>
+  nmap <leader>a<Bar> :Tabularize /<Bar><CR>
+  vmap <leader>a<Bar> :Tabularize /<Bar><CR>
+
+  " The following function automatically aligns when typing a
+  " supported character
+  inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+  function! s:align()
+      let p = '^\s*|\s.*\s|\s*$'
+      if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+          let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+          let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+          Tabularize/|/l1
+          normal! 0
+          call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+      endif
+  endfunction
+
+endif
+
+""""""""""""""""""""
+" Ctrlp
+""""""""""""""""""""
+let g:ctrlp_working_path_mode = 'ra'
+nnoremap <CR> :CtrlPBuffer<CR>
+nnoremap <C-u> :CtrlPMRU<CR>
+nnoremap <C-e> :CtrlPClearCache<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|build$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.DS_Store$\|\.pyc$\|__pycache__' }
+
+""""""""""""""""""""
+" Fugitive
+""""""""""""""""""""
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+
+""""""""""""""""""""
+" Gitgutter
+""""""""""""""""""""
+nmap <leader>g :GitGutterToggle<CR>
+let g:gitgutter_enabled = 1
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+
+""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""
+let g:syntastic_check_on_open=1
+let g:syntastic_auto_jump=0

@@ -1,0 +1,119 @@
+""""""""""""""""""""
+" Vundle Configurations
+""""""""""""""""""""
+
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.dotfiles/vim/bundle/Vundle.vim/
+call vundle#begin()
+" call vundle#rc("~/.dotfiles/vim/bundle")
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+
+""""""""""""""""""""
+" GENERAL
+""""""""""""""""""""
+
+" vim powerline
+Plugin 'Lokaltog/vim-powerline'
+
+" nerdetree - folder exlorer
+Plugin 'scrooloose/nerdtree'
+
+" Fuzzy file, buffer, mru, tag, etc finder
+Plugin 'kien/ctrlp.vim'
+
+" auto close when typing
+Plugin 'Townk/vim-autoclose'
+
+" shows a git diff in gutter
+Plugin 'airblade/vim-gitgutter'
+
+" Vim script for text filtering and alignment
+Plugin 'godlygeek/tabular'
+
+" Perform all your vim insert mode completions with Tab
+Plugin 'ervandew/supertab'
+
+" add :Bclose support
+Plugin 'rbgrouleff/bclose.vim'
+
+" Vim plugin for the Perl module / CLI script ack
+Plugin 'mileszs/ack.vim'
+
+" quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
+
+" easily search for, substitute, and abbreviate multiple variants of a word
+Plugin 'tpope/vim-abolish'
+
+" comment stuff out
+Plugin 'tpope/vim-commentary'
+
+" a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-fugitive'
+
+" enable repeating supported plugin maps with "."
+Plugin 'tpope/vim-repeat'
+
+
+""""""""""""""""""""
+" UI
+""""""""""""""""""""
+
+" Syntax checking hacks for vim
+Plugin 'scrooloose/syntastic'
+
+" color theme
+Plugin 'altercation/vim-colors-solarized'
+
+" one colorscheme pack to rule them all!
+Plugin 'flazz/vim-colorschemes'
+
+
+""""""""""""""""""""
+" CODING
+""""""""""""""""""""
+
+" emmet - html/css tag generator
+Plugin 'mattn/emmet-vim'
+
+" html5
+Plugin 'othree/html5.vim'
+
+" css3
+Plugin 'hail2u/vim-css3-syntax'
+
+" haml, sass, and scss
+Plugin 'tpope/vim-haml'
+
+" JSON
+Plugin 'vim-scripts/JSON.vim'
+
+" js
+Plugin 'pangloss/vim-javascript'
+Plugin 'Shutnik/jshint2.vim'
+
+" rails
+Plugin 'tpope/vim-rails'
+
+" ruby
+Plugin 'vim-ruby/vim-ruby'
+
+" jade
+Plugin 'digitaltoad/vim-jade'
+
+" markdown
+Plugin 'tpope/vim-markdown'
+
+" coffeescript
+Plugin 'kchmck/vim-coffee-script'
+
+" twig/jinjia
+Plugin 'Glench/Vim-Jinja2-Syntax'
+
+call vundle#end()            " required
+filetype plugin indent on    " required "
